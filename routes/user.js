@@ -7,10 +7,6 @@ var saltRounds = 10
 var key = require('../models/config')
 require('../middleware/jwt').passport;
 
-router.get("/home", (req, res) => {
-    res.status(200).send(`Hi Welcome to the Login and Signup API`);
-});
-
 
 router.post("/signup", async (req, res) => {
     var newUser = new User({
@@ -31,6 +27,7 @@ router.post("/signup", async (req, res) => {
                             .save()
                             .then(() => {
                                 res.status(200).json({ message: "user has been register" });
+                                console.log(newUser);
                             })
                             .catch(err => {
                                 console.log("Error is ", err.message);
